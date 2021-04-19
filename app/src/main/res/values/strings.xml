@@ -19,5 +19,6 @@
     <string name="equil">=</string>
     <string name="equi">=</string>
     <string name="plus">+</string>
-    <string name="hint">Введите выражение</string>
+    <string name="hint">Enter expression</string>
+    <string name="result">Result</string>
 </resources>
