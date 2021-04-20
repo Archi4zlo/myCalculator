@@ -12,7 +12,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideWelcomeString(): String{
+    fun provideWelcomeString(): String {
         return "Welcome to my calculator"
     }
 }

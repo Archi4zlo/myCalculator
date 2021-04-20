@@ -8,10 +8,10 @@ import javax.inject.Inject
 class MainFragmentFactory
 @Inject constructor(
     private val welcomeString: String
-): FragmentFactory(){
+) : FragmentFactory() {
     @ExperimentalCoroutinesApi
     override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
-        return when(className){
+        return when (className) {
             MainFragment::class.java.name -> {
                 val fragment = MainFragment(welcomeString)
                 fragment

@@ -10,7 +10,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import android.view.animation.Animation
 
-import android.view.animation.AlphaAnimation
+import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -25,7 +26,6 @@ class MainFragment constructor(
 ) : Fragment(R.layout.fragment_main) {
 
     private lateinit var viewModel: MainViewModel
-    private val TAG: String = "MainFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,22 +38,25 @@ class MainFragment constructor(
             container,
             false
         )
+        val anim: Animation = AnimationUtils.loadAnimation(context, R.anim.anim)
+
+        Toast.makeText(context, welcomeString, Toast.LENGTH_LONG).show()
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         binding.mainViewModel = viewModel
         binding.lifecycleOwner = this
 
         viewModel.currentExpression.observe(viewLifecycleOwner, Observer {
-            binding.TVInputNumbers.text = it
+            if (it.isEmpty()) {
+                binding.TVInputNumbers.text = "|"
+                binding.TVInputNumbers.startAnimation(anim)
+            } else {
+                binding.TVInputNumbers.text = it
+            }
+
         })
 
         if (viewModel.currentExpression.value == "|") {
-            //Animation
-            val anim: Animation = AlphaAnimation(0.0f, 1.0f)
-            anim.duration = 300 //You can manage the time of the blink with this parameter
-            anim.startOffset = 20
-            anim.repeatMode = Animation.REVERSE
-            anim.repeatCount = Animation.INFINITE
             binding.TVInputNumbers.startAnimation(anim)
         }
 
@@ -113,10 +116,30 @@ class MainFragment constructor(
             binding.TVInputNumbers.clearAnimation()
             viewModel.addPlus()
         }
+
         binding.buttonClear.setOnClickListener {
+            if (viewModel.currentExpression.value?.length == 1) {
+                viewModel.default()
+                if (viewModel.currentExpression.value == "|") {
+                    binding.TVInputNumbers.startAnimation(anim)
+                    binding.textViewResult.text = ""
+                } else {
+                    viewModel.clear()
+                    binding.textViewResult.text = ""
+                }
+            } else {
+                viewModel.clear()
+                binding.textViewResult.text = ""
+            }
+
+
+        }
+        binding.buttonClear.setOnLongClickListener {
             binding.TVInputNumbers.clearAnimation()
-            viewModel.clear()
-            binding.textViewResult.text=""
+            viewModel.clearAll()
+            binding.textViewResult.text = ""
+            binding.TVInputNumbers.startAnimation(anim)
+            true
         }
         binding.buttonComma.setOnClickListener {
             binding.TVInputNumbers.clearAnimation()

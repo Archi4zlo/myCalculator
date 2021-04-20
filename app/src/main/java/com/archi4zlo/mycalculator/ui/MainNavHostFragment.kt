@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class MainNavHostFragment: NavHostFragment(){
+class MainNavHostFragment : NavHostFragment() {
     @Inject
     lateinit var fragmentFactory: MainFragmentFactory
     override fun onAttach(context: Context) {
