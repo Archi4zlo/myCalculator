@@ -1,11 +1,12 @@
+@file:Suppress("unused", "unused", "unused", "unused")
+
 package com.archi4zlo.mycalculator.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptEngine;
-import java.util.*
+import javax.script.ScriptEngineManager
+import javax.script.ScriptEngine
 
 
 
@@ -27,138 +28,128 @@ class MainViewModel : ViewModel() {
     private var _wasWriteOneComma = MutableLiveData<Boolean>()
     val wasOneSymbolComma: LiveData<Boolean>
         get() = _wasWriteOneComma
-
+    private var _blockGetResult = MutableLiveData<Boolean>()
+    val blockGetResult: LiveData<Boolean>
+        get() = _blockGetResult
 
     init {
         _currentExpression.value = "|"
         _wasWriteSymbol.value = false
         _wasWriteSymbolComma.value = false
+        _blockGetResult.value = false
     }
     fun default(){
         _currentExpression.value = "|"
     }
-
+    private fun blockWriteSymbolCommaGetResult(){
+        _wasWriteSymbol.value = false
+        _wasWriteSymbolComma.value = false
+        _blockGetResult.value =false
+    }
+    private fun unBlockWriteSymbolCommaGetResult(){
+        _wasWriteSymbol.value = true
+        _wasWriteSymbolComma.value = true
+        _blockGetResult.value =true
+    }
     fun add0() {
         if (_currentExpression.value != "|") {
             _currentExpression.value = _currentExpression.value + "0"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         } else {
             _currentExpression.value = "0"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         }
     }
     fun add1() {
         if (_currentExpression.value != "|") {
             _currentExpression.value = _currentExpression.value + "1"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         } else {
             _currentExpression.value = "1"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         }
     }
     fun add2() {
         if (_currentExpression.value != "|") {
             _currentExpression.value = _currentExpression.value + "2"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         } else {
             _currentExpression.value = "2"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         }
     }
     fun add3() {
         if (_currentExpression.value != "|") {
             _currentExpression.value = _currentExpression.value + "3"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         } else {
             _currentExpression.value = "3"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         }
     }
     fun add4() {
         if (_currentExpression.value != "|") {
             _currentExpression.value = _currentExpression.value + "4"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         } else {
             _currentExpression.value = "4"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         }
     }
     fun add5() {
         if (_currentExpression.value != "|") {
             _currentExpression.value = _currentExpression.value + "5"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         } else {
             _currentExpression.value = "5"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         }
     }
     fun add6() {
         if (_currentExpression.value != "|") {
             _currentExpression.value = _currentExpression.value + "6"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         } else {
             _currentExpression.value = "6"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         }
     }
     fun add7() {
         if (_currentExpression.value != "|") {
             _currentExpression.value = _currentExpression.value + "7"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         } else {
             _currentExpression.value = "7"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         }
     }
     fun add8() {
         if (_currentExpression.value != "|") {
             _currentExpression.value = _currentExpression.value + "8"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         } else {
             _currentExpression.value = "8"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         }
     }
     fun add9() {
         if (_currentExpression.value != "|") {
             _currentExpression.value = _currentExpression.value + "9"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         } else {
             _currentExpression.value = "9"
-            _wasWriteSymbol.value = false
-            _wasWriteSymbolComma.value = false
+            blockWriteSymbolCommaGetResult()
         }
     }
     fun addDiv() {
         if (_wasWriteSymbol.value == false) {
             if (_currentExpression.value != "|") {
                 _currentExpression.value = _currentExpression.value + "/"
-                _wasWriteSymbol.value = true
-                _wasWriteSymbolComma.value = true
+                unBlockWriteSymbolCommaGetResult()
                 _wasWriteOneComma.value = false
             } else {
                 _currentExpression.value = "/"
-                _wasWriteSymbol.value = true
-                _wasWriteSymbolComma.value = true
+                unBlockWriteSymbolCommaGetResult()
                 _wasWriteOneComma.value = false
             }
         }
@@ -167,13 +158,11 @@ class MainViewModel : ViewModel() {
         if (_wasWriteSymbol.value == false) {
             if (_currentExpression.value != "|") {
                 _currentExpression.value = _currentExpression.value + "*"
-                _wasWriteSymbol.value = true
-                _wasWriteSymbolComma.value = true
+                unBlockWriteSymbolCommaGetResult()
                 _wasWriteOneComma.value = false
             } else {
                 _currentExpression.value = "*"
-                _wasWriteSymbol.value = true
-                _wasWriteSymbolComma.value = true
+                unBlockWriteSymbolCommaGetResult()
                 _wasWriteOneComma.value = false
             }
         }
@@ -182,13 +171,11 @@ class MainViewModel : ViewModel() {
         if (_wasWriteSymbol.value == false) {
             if (_currentExpression.value != "|") {
                 _currentExpression.value = _currentExpression.value + "-"
-                _wasWriteSymbol.value = true
-                _wasWriteSymbolComma.value = false
+                unBlockWriteSymbolCommaGetResult()
                 _wasWriteOneComma.value = false
             } else {
                 _currentExpression.value = "-"
-                _wasWriteSymbol.value = true
-                _wasWriteSymbolComma.value = true
+                unBlockWriteSymbolCommaGetResult()
                 _wasWriteOneComma.value = false
             }
         }
@@ -197,13 +184,11 @@ class MainViewModel : ViewModel() {
         if (_wasWriteSymbol.value == false){
             if (_currentExpression.value != "|") {
                 _currentExpression.value = _currentExpression.value + "+"
-                _wasWriteSymbol.value = true
-                _wasWriteSymbolComma.value = true
+                unBlockWriteSymbolCommaGetResult()
                 _wasWriteOneComma.value = false
             } else {
                 _currentExpression.value = "+"
-                _wasWriteSymbol.value = true
-                _wasWriteSymbolComma.value = true
+                unBlockWriteSymbolCommaGetResult()
                 _wasWriteOneComma.value = false
             }
         }
@@ -214,13 +199,11 @@ class MainViewModel : ViewModel() {
             if(_wasWriteSymbolComma.value == false){
                 if (_currentExpression.value != "|") {
                     _currentExpression.value = _currentExpression.value + "."
-                    _wasWriteSymbol.value = true
-                    _wasWriteSymbolComma.value = true
+                    unBlockWriteSymbolCommaGetResult()
                     _wasWriteOneComma.value = true
                 } else {
                     _currentExpression.value = "."
-                    _wasWriteSymbol.value = true
-                    _wasWriteSymbolComma.value = true
+                    unBlockWriteSymbolCommaGetResult()
                     _wasWriteOneComma.value = true
                 }
             }
@@ -235,7 +218,7 @@ class MainViewModel : ViewModel() {
     }
 
     fun clear(){
-        _currentExpression.value = Companion.deleteLastSymbol(_currentExpression.value)!!
+        _currentExpression.value = deleteLastSymbol(_currentExpression.value)!!
         _wasWriteOneComma.value = false
         _wasWriteSymbol.value = false
         _wasWriteSymbolComma.value = false
@@ -244,10 +227,12 @@ class MainViewModel : ViewModel() {
 
 
     fun getResult(currentExpression: String): String{
-        val manager = ScriptEngineManager()
-        val engine: ScriptEngine = manager.getEngineByName("js")
-        val result: Any = engine.eval(currentExpression)
-        return result.toString()
+        return if (_blockGetResult.value == false){
+            val manager = ScriptEngineManager()
+            val engine: ScriptEngine = manager.getEngineByName("js")
+            val result: Any = engine.eval(currentExpression)
+            result.toString()
+        } else ""
     }
 
     companion object {
@@ -258,7 +243,6 @@ class MainViewModel : ViewModel() {
                     stringExpression = stringExpression.substring(0, stringExpression.length - 1)
                 }
             }
-//            if (stringExpression)
             return stringExpression
         }
     }

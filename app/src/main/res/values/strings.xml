@@ -15,12 +15,6 @@
     <string name="minus">-</string>
     <string name="_0">0</string>
     <string name="comma">,</string>
-    <string name="Equil">=</string>
-    <string name="equil">=</string>
-    <string name="equi">=</string>
     <string name="plus">+</string>
-    <string name="hint">Enter expression</string>
-    <string name="result">Result</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="quil">quil</string>
 </resources>

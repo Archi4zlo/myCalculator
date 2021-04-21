@@ -13,7 +13,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.archi4zlo.mycalculator.model.MainViewModel
 import com.archi4zlo.mycalculator.databinding.FragmentMainBinding
@@ -31,7 +30,7 @@ class MainFragment constructor(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding: FragmentMainBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_main,
@@ -46,7 +45,7 @@ class MainFragment constructor(
         binding.mainViewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.currentExpression.observe(viewLifecycleOwner, Observer {
+        viewModel.currentExpression.observe(viewLifecycleOwner, {
             if (it.isEmpty()) {
                 binding.TVInputNumbers.text = "|"
                 binding.TVInputNumbers.startAnimation(anim)
@@ -145,7 +144,7 @@ class MainFragment constructor(
             binding.TVInputNumbers.clearAnimation()
             viewModel.comma()
         }
-        binding.buttonEquil.setOnClickListener {
+        binding.buttonQuil.setOnClickListener {
             val current = viewModel.currentExpression.value
             binding.textViewResult.text = current?.let { it1 -> viewModel.getResult(it1) }
         }
