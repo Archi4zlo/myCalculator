@@ -8,10 +8,6 @@ import androidx.lifecycle.ViewModel
 import javax.script.ScriptEngineManager
 import javax.script.ScriptEngine
 
-
-
-
-
 class MainViewModel : ViewModel() {
     private var _currentExpression = MutableLiveData<String>()
     val currentExpression: LiveData<String>
@@ -197,6 +193,23 @@ class MainViewModel : ViewModel() {
         }
 
     }
+    fun addInv(){}
+    fun addRad(){}
+    fun addPercent(){}
+
+    fun addSin(){}
+    fun addCos(){}
+    fun addTan(){}
+    fun addLn(){}
+    fun addLog(){}
+    fun addSqrt(){}
+    fun addPi(){}
+    fun addE(){}
+    fun addDegree(){}
+    fun addLeftBrake(){}
+    fun addRightBrake(){}
+    fun addInverce(){}
+
     fun comma(){
         if (_wasWriteOneComma.value == false){
             if(_wasWriteSymbolComma.value == false){

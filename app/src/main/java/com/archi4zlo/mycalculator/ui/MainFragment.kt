@@ -13,6 +13,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.archi4zlo.mycalculator.model.MainViewModel
@@ -25,7 +26,7 @@ class MainFragment constructor(
     private val welcomeString: String
 ) : Fragment(R.layout.fragment_main) {
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel  by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,7 +43,6 @@ class MainFragment constructor(
 
         Toast.makeText(context, welcomeString, Toast.LENGTH_LONG).show()
 
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         binding.mainViewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -55,15 +55,12 @@ class MainFragment constructor(
             }
 
         })
-
         viewModel.currentResult.observe(viewLifecycleOwner, Observer {
             binding.textViewResult.text = it
         })
-
         if (viewModel.currentExpression.value == "|") {
             binding.TVInputNumbers.startAnimation(anim)
         }
-
         binding.button0.setOnClickListener {
             binding.TVInputNumbers.clearAnimation()
             viewModel.add0()
@@ -121,6 +118,26 @@ class MainFragment constructor(
             viewModel.addPlus()
         }
 
+        // Need to realize ''''''''''''''''''''''''''''''''''''''''
+        binding.buttonPercent?.setOnClickListener {
+            binding.TVInputNumbers.clearAnimation()
+            viewModel.addPercent()
+        }
+        binding.buttonRad?.setOnClickListener {}
+        binding.buttonSin?.setOnClickListener {}
+        binding.buttonCos?.setOnClickListener {}
+        binding.buttonTan?.setOnClickListener {}
+        binding.buttonLn?.setOnClickListener {}
+        binding.buttonLog?.setOnClickListener {}
+        binding.buttonSqrt?.setOnClickListener {}
+        binding.buttonPi?.setOnClickListener {}
+        binding.buttonE?.setOnClickListener {}
+        binding.buttonCaretDegree?.setOnClickListener {}
+        binding.buttonLeftBrake?.setOnClickListener {}
+        binding.buttonRightBrake?.setOnClickListener {}
+        binding.buttonInversion?.setOnClickListener {}
+        //''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
         binding.buttonClear.setOnClickListener {
             if (viewModel.currentExpression.value?.length == 1) {
                 viewModel.default()
@@ -155,6 +172,5 @@ class MainFragment constructor(
         }
 
         return binding.root
-
     }
 }
