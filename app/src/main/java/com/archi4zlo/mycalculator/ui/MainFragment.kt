@@ -13,6 +13,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.archi4zlo.mycalculator.model.MainViewModel
 import com.archi4zlo.mycalculator.databinding.FragmentMainBinding
@@ -53,6 +54,10 @@ class MainFragment constructor(
                 binding.TVInputNumbers.text = it
             }
 
+        })
+
+        viewModel.currentResult.observe(viewLifecycleOwner, Observer {
+            binding.textViewResult.text = it
         })
 
         if (viewModel.currentExpression.value == "|") {

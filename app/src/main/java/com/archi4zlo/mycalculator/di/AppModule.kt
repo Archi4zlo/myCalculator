@@ -3,10 +3,11 @@ package com.archi4zlo.mycalculator.di
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 //import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
-@InstallIn(Singleton::class)
+@InstallIn(ApplicationComponent::class)
 @Module
 object AppModule {
 

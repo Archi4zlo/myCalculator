@@ -16,6 +16,9 @@ class MainViewModel : ViewModel() {
     private var _currentExpression = MutableLiveData<String>()
     val currentExpression: LiveData<String>
         get() = _currentExpression
+    private var _currentResult = MutableLiveData<String>()
+    val currentResult: LiveData<String>
+        get() = _currentResult
 
     private var _wasWriteSymbol = MutableLiveData<Boolean>()
     val wasWriteSymbol: LiveData<Boolean>
@@ -231,8 +234,12 @@ class MainViewModel : ViewModel() {
             val manager = ScriptEngineManager()
             val engine: ScriptEngine = manager.getEngineByName("js")
             val result: Any = engine.eval(currentExpression)
+            _currentResult.value = result.toString()
             result.toString()
-        } else ""
+        } else {
+            _currentResult.value =""
+            return ""
+        }
     }
 
     companion object {

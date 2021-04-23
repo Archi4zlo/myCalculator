@@ -16,5 +16,20 @@
     <string name="_0">0</string>
     <string name="comma">,</string>
     <string name="plus">+</string>
-    <string name="quil">quil</string>
+    <string name="quil">=</string>
+    <string name="sqrt">√</string>
+    <string name="degree">^</string>
+    <string name="inv">inv</string>
+    <string name="rad">rad</string>
+    <string name="percent">%</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tan</string>
+    <string name="ln">ln</string>
+    <string name="log">log</string>
+    <string name="pi">pi</string>
+    <string name="e">e</string>
+    <string name="leftBrake">(</string>
+    <string name="rightBrake">)</string>
+    <string name="inversion">!</string>
 </resources>
